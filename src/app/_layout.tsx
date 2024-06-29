@@ -1,11 +1,15 @@
 import "@/styles/global.css";
-import { Text, View } from "react-native";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 const RootLayout = () => {
   return (
-    <View className="flex-1 justify-center items-center">
-      <Text className="text-2xl font-bold">teste</Text>
-    </View>
+    <>
+      <StatusBar style="light" />
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+      </Stack>
+    </>
   );
 };
 
