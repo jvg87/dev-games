@@ -9,9 +9,10 @@ const RootLayout = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <StatusBar style="light" />
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="category/[id]" options={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="category/[id]" />
+        <Stack.Screen name="details/[id]" />
       </Stack>
     </QueryClientProvider>
   );

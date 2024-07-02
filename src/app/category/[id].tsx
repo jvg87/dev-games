@@ -1,13 +1,12 @@
 import { GameList, HeaderPage, Loading } from "@/components";
-import { useGamesByCategory } from "@/hooks";
+import { useGamesByCategoryData } from "@/hooks";
 import { CategoryListResponse } from "@/interface";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
 
 const Category = () => {
   const { id, name } = useLocalSearchParams<CategoryListResponse>();
-  const route = useRouter();
-  const { data: games, isLoading } = useGamesByCategory(id);
+  const { data: games, isLoading } = useGamesByCategoryData(id);
 
   if (isLoading) {
     return <Loading />;

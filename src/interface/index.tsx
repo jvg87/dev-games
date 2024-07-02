@@ -30,7 +30,7 @@ export type GameResponse = {
     name: string;
   }[];
   platforms: {
-    plataform: {
+    platform: {
       id: string;
       name: string;
     };
