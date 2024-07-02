@@ -26,7 +26,7 @@ const Home = () => {
         {categories && <CategoryList categories={categories} />}
       </View>
 
-      <View>{games && <GameList games={games} />}</View>
+      <View>{games && <GameList games={games} hasTitle />}</View>
     </View>
   );
 };
