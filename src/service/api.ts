@@ -18,6 +18,17 @@ const fetchAllCategories = async () => {
   }
 };
 
+const fetchGamesByCategory = async (id?: string) => {
+  try {
+    const response = await baseUrl.get<GamesResponse>(
+      `/games?page_size=10&key=${API_KEY}&genres=${id}`
+    );
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const fetchAllGames = async () => {
   try {
     const response = await baseUrl.get<GamesResponse>(
@@ -32,4 +43,5 @@ const fetchAllGames = async () => {
 export const api = {
   fetchAllCategories,
   fetchAllGames,
+  fetchGamesByCategory,
 };
