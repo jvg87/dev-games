@@ -1,4 +1,4 @@
-import { CategoryResponse, GamesResponse } from "@/interface";
+import { CategoryResponse, GameResponse, GamesResponse } from "@/interface";
 import axios from "axios";
 
 const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
@@ -40,8 +40,20 @@ const fetchAllGames = async () => {
   }
 };
 
+const fetchGamesById = async (id?: string) => {
+  try {
+    const response = await baseUrl.get<GameResponse>(
+      `/games/${id}?key=${API_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const api = {
   fetchAllCategories,
   fetchAllGames,
   fetchGamesByCategory,
+  fetchGamesById,
 };

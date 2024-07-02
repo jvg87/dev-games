@@ -6,7 +6,7 @@ const getGamesByCategory = async (id?: string) => {
   return response;
 };
 
-export const useGamesByCategory = (id?: string) => {
+export const useGamesByCategoryData = (id?: string) => {
   const query = useQuery({
     queryKey: ["gamesByCategory", id],
     queryFn: () => getGamesByCategory(id),
