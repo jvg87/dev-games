@@ -1,4 +1,5 @@
 import { GamesListResponse } from "@/interface";
+import { formattingRating } from "@/utils/formattingRating";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { Image, Pressable, Text, View } from "react-native";
@@ -20,7 +21,9 @@ export const GameItem = ({ game }: GameItemProps) => {
           <Text className="text-white font-bold">{game.name}</Text>
           <View className="flex-row gap-1">
             <MaterialIcons name="star" size={20} color="#FABB1E" />
-            <Text className="text-white">{game.metacritic}/100</Text>
+            <Text className="text-white">
+              {formattingRating(game.metacritic)}/10
+            </Text>
           </View>
         </View>
       </Pressable>

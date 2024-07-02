@@ -4,6 +4,7 @@ import { FlatList, ScrollView, Text, View } from "react-native";
 import { HeaderDetail, Loading } from "@/components";
 import { useGameDetailData } from "@/hooks";
 import { GamesListResponse } from "@/interface";
+import { formattingRating } from "@/utils/formattingRating";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const Detail = () => {
@@ -26,7 +27,9 @@ const Detail = () => {
       <View className="px-4 mb-6">
         <View className="gap-1 flex-row mb-1">
           <MaterialIcons name="star" size={20} color="#FABB1E" />
-          <Text className="text-white">{game?.metacritic}/100</Text>
+          <Text className="text-white">
+            {game && formattingRating(game?.metacritic)}/10
+          </Text>
         </View>
         <Text className="text-white font-bold text-xl">{game?.name}</Text>
       </View>
