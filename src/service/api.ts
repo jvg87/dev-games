@@ -8,17 +8,25 @@ const baseUrl = axios.create({
 });
 
 const fetchAllCategories = async () => {
-  const response = await baseUrl.get<CategoryResponse>(
-    `/genres?key=${API_KEY}`
-  );
-  return response.data.results;
+  try {
+    const response = await baseUrl.get<CategoryResponse>(
+      `/genres?key=${API_KEY}`
+    );
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const fetchAllGames = async () => {
-  const response = await baseUrl.get<GamesResponse>(
-    `/games?page_size=5&key=${API_KEY}`
-  );
-  return response.data.results;
+  try {
+    const response = await baseUrl.get<GamesResponse>(
+      `/games?page_size=10&key=${API_KEY}`
+    );
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const api = {

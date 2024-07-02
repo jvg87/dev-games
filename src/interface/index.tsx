@@ -10,7 +10,7 @@ export type CategoryResponse = {
 export type GamesListResponse = {
   id: string;
   name: string;
-  rating: number;
+  metacritic: number;
   background_image: string;
 };
 
