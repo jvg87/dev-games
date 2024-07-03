@@ -13,6 +13,7 @@ const RootLayout = () => {
         <Stack.Screen name="index" />
         <Stack.Screen name="category/[id]" />
         <Stack.Screen name="details/[id]" />
+        <Stack.Screen name="search/[name]" />
       </Stack>
     </QueryClientProvider>
   );

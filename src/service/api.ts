@@ -1,5 +1,6 @@
-import { CategoryResponse, GameResponse, GamesResponse } from "@/interface";
 import axios from "axios";
+
+import { CategoryResponse, GameResponse, GamesResponse } from "@/interface";
 
 const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
@@ -51,9 +52,21 @@ const fetchGamesById = async (id?: string) => {
   }
 };
 
+const fetchGamesByName = async (name?: string) => {
+  try {
+    const response = await baseUrl.get<GamesResponse>(
+      `/games?page_size=10&key=${API_KEY}&search=${name}`
+    );
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const api = {
   fetchAllCategories,
   fetchAllGames,
   fetchGamesByCategory,
   fetchGamesById,
+  fetchGamesByName,
 };
