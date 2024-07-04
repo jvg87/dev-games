@@ -1,15 +1,17 @@
 import { useLocalSearchParams } from "expo-router";
-import { FlatList, ScrollView, Text, View } from "react-native";
+import { FlatList, Modal, ScrollView, Text, View } from "react-native";
 
-import { HeaderDetail, Loading } from "@/components";
+import { Button, HeaderDetail, Loading, ModalItem } from "@/components";
 import { useGameDetailData } from "@/hooks";
 import { GamesListResponse } from "@/interface";
 import { formattingRating } from "@/utils/formattingRating";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useState } from "react";
 
 const Detail = () => {
   const { id } = useLocalSearchParams<Pick<GamesListResponse, "id">>();
   const { data: game, isLoading } = useGameDetailData(id);
+  const [showModal, setShowModal] = useState(false);
 
   if (isLoading) {
     return <Loading />;
@@ -52,7 +54,10 @@ const Detail = () => {
         <Text className="text-white text-lg font-semibold mb-3">
           Description
         </Text>
-        <Text className="text-white">{game?.description}</Text>
+        <Text numberOfLines={6} className="text-white mb-2">
+          {game?.description}
+        </Text>
+        <Button onPress={() => setShowModal(true)} />
       </View>
 
       <View className="px-4 mb-6 ">
@@ -84,6 +89,13 @@ const Detail = () => {
           contentContainerStyle={{ gap: 10 }}
         />
       </View>
+
+      <Modal animationType="slide" transparent visible={showModal}>
+        <ModalItem
+          description={game?.description}
+          closeModal={() => setShowModal(!showModal)}
+        />
+      </Modal>
     </ScrollView>
   );
 };
