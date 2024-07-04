@@ -1,12 +1,23 @@
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, TextInput, View } from "react-native";
+import { Alert, Pressable, TextInput, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export const Input = () => {
   const [name, setName] = useState("");
+
+  const route = useRouter();
+
+  const handleSearch = (name: string) => {
+    if (name === "") {
+      Alert.alert("OPS!", "Digite algum nome");
+      return;
+    }
+
+    route.navigate({ pathname: "search/[name]", params: { name } });
+  };
 
   return (
     <View className="flex-row gap-3 items-center">
@@ -16,11 +27,9 @@ export const Input = () => {
         placeholderTextColor={colors.gray[500]}
         onChangeText={(text) => setName(text)}
       />
-      <Link href={{ pathname: "search/[name]", params: { name } }} asChild>
-        <Pressable>
-          <MaterialIcons name="search" size={40} color={colors.red[600]} />
-        </Pressable>
-      </Link>
+      <Pressable onPress={() => handleSearch(name)}>
+        <MaterialIcons name="search" size={40} color={colors.red[600]} />
+      </Pressable>
     </View>
   );
 };
