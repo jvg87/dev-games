@@ -12,7 +12,7 @@ const Favorites = () => {
   return (
     <View className="flex-1 px-4 pt-20 pb-8 bg-blue-950">
       <HeaderPage name="Favorites" />
-      {data && <GameList games={data} hasTitle={false} />}
+      {data && <GameList games={data} hasTitle={false} isFavorite />}
     </View>
   );
 };

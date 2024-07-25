@@ -30,6 +30,7 @@ export const HeaderDetail = ({ game }: HeaderDetailProps) => {
       const data = [...previousData, game];
 
       await AsyncStorage.setItem("@saveDevGame", JSON.stringify(data));
+
       Alert.alert("Salvo com sucesso!", "Jogo adicionado aos favoritos!");
     } catch (error) {
       console.log(error);

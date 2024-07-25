@@ -5,9 +5,14 @@ import { GameItem } from "../GameItem";
 type GameListProps = {
   games: GamesListResponse[];
   hasTitle: boolean;
+  isFavorite?: boolean;
 };
 
-export const GameList = ({ hasTitle, games }: GameListProps) => {
+export const GameList = ({
+  isFavorite = false,
+  hasTitle,
+  games,
+}: GameListProps) => {
   return (
     <FlatList
       ListHeaderComponent={() =>
@@ -17,7 +22,9 @@ export const GameList = ({ hasTitle, games }: GameListProps) => {
       }
       keyExtractor={(item) => item.id}
       data={games}
-      renderItem={({ item }) => <GameItem game={item} />}
+      renderItem={({ item }) => (
+        <GameItem game={item} isFavorite={isFavorite} />
+      )}
       contentContainerStyle={{ gap: 12 }}
     />
   );
