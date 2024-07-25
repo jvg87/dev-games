@@ -19,12 +19,7 @@ const Detail = () => {
 
   return (
     <ScrollView className="flex-1 pt-20   bg-blue-950">
-      {game && (
-        <HeaderDetail
-          background_image={game?.background_image}
-          background_image_additional={game.background_image_additional}
-        />
-      )}
+      {game && <HeaderDetail game={game} />}
 
       <View className="px-4 mb-6">
         <View className="gap-1 flex-row mb-1">
