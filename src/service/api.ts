@@ -3,6 +3,8 @@ import axios from "axios";
 import { CategoryResponse, GameResponse, GamesResponse } from "@/interface";
 
 const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
+const PAGE_SIZE = 10;
+const CURRENT_PAGE = 1;
 
 const baseUrl = axios.create({
   baseURL: "https://api.rawg.io/api",
@@ -30,10 +32,10 @@ const fetchGamesByCategory = async (id?: string) => {
   }
 };
 
-const fetchAllGames = async () => {
+const fetchAllGames = async ({ pageParam }: { pageParam: number }) => {
   try {
     const response = await baseUrl.get<GamesResponse>(
-      `/games?page_size=10&key=${API_KEY}`
+      `/games?key=${API_KEY}&page=${pageParam}&page_size=${PAGE_SIZE}`
     );
     return response.data.results;
   } catch (error) {

@@ -6,9 +6,11 @@ type GameListProps = {
   games: GamesListResponse[];
   hasTitle: boolean;
   isFavorite?: boolean;
+  onReachEnd?: () => void;
 };
 
 export const GameList = ({
+  onReachEnd,
   isFavorite = false,
   hasTitle,
   games,
@@ -26,6 +28,8 @@ export const GameList = ({
         <GameItem game={item} isFavorite={isFavorite} />
       )}
       contentContainerStyle={{ gap: 12 }}
+      onEndReached={onReachEnd}
+      onEndReachedThreshold={0.5}
     />
   );
 };
